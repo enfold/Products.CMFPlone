@@ -8,17 +8,22 @@ Changelog
 5.0.1 (unreleased)
 ------------------
 
+- Changes for Zope 4 compatibility in maintenance controlpanel.
+  [thet]
+
 - Fix some i18n issues.
   [vincentfretin]
 
 - Add syndication for plone.app.contenttypes collections.
   [do3cc]
 
+- Fix "contains object" tinymce setting not getting passed into pattern
+  correctly Fixes #1023.
 - fix "contains object" tinymce setting not getting passed into pattern
   correctly Fixes #1023
   [vangheem]
 
-- compress generated bundle css file when running plone-compile-resource
+- Compress generated bundle css file when running plone-compile-resource.
   [petschki]
 
 - Add new commandline argument to plone-compile-resource: --compile-dir
