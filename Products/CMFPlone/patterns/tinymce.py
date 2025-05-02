@@ -121,6 +121,7 @@ class TinyMCESettingsGenerator:
             "table_cell_advtab": False,
             "table_style_by_css": False,
             "table_appearance_options": False,
+            "cloud_plugins": {}
         }
         toolbar_additions = settings.custom_buttons or []
 
@@ -198,5 +199,9 @@ class TinyMCESettingsGenerator:
                 tiny_config.update(json.loads(settings.other_settings))
             except ValueError:
                 pass
+
+        if settings.cloud_api_key:
+            tiny_config['cloud_plugins']['api_key'] = settings.cloud_api_key
+            tiny_config['cloud_plugins']['plugins'] = settings.cloud_plugins
 
         return tiny_config

@@ -1,6 +1,7 @@
 from plone.app.registry.browser import controlpanel
 from plone.base import PloneMessageFactory as _
 from plone.base.interfaces import ITinyMCEAdvancedSchema
+from plone.base.interfaces import ITinyMCECloudPluginsSchema
 from plone.base.interfaces import ITinyMCELayoutSchema
 from plone.base.interfaces import ITinyMCEPluginSchema
 from plone.base.interfaces import ITinyMCEResourceTypesSchema
@@ -25,6 +26,11 @@ class TinyMCEAdvancedForm(group.GroupForm):
     fields = field.Fields(ITinyMCEAdvancedSchema)
 
 
+class TinyMCECloudPluginsForm(group.GroupForm):
+    label = _("Cloud Plugins")
+    fields = field.Fields(ITinyMCECloudPluginsSchema)
+
+
 class TinyMCEControlPanelForm(controlpanel.RegistryEditForm):
     id = "TinyMCEControlPanel"
     label = _("TinyMCE Settings")
@@ -34,12 +40,14 @@ class TinyMCEControlPanelForm(controlpanel.RegistryEditForm):
     groups = (
         TinyMCEPluginForm,
         TinyMCEResourceTypesForm,
+        TinyMCECloudPluginsForm,
         TinyMCEAdvancedForm,
     )
 
     def updateFields(self):
         super().updateFields()
         self.groups[0].fields["plugins"].widgetFactory = CheckBoxFieldWidget
+        self.groups[2].fields["cloud_plugins"].widgetFactory = CheckBoxFieldWidget
 
 
 class TinyMCEControlPanel(controlpanel.ControlPanelFormWrapper):
